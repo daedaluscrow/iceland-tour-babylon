@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iceland 360 Tour</title>
+  <script src="./assets/babylon.js"></script>
+  <script src="./assets/babylon.gui.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="logo-container">
+      <div class="logo">
+        <img src="./iceland.svg" />
+      </div>
+      <div class="logo-text">
+        <h1>Iceland 360</h1>
+      </div>
+    </div>
+    <div class="links-container">
+      <ul>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </div>
+  </nav>
+  <aside class="explanation">
+    <p>This page contains an immersive tour of various locations in Iceland. It consists of 360&deg; photos and videos
+      taken
+      over the course of two trips to Iceland; the first in July of 2019, the second in the fall of 2021.</p>
+  </aside>
+  <main class="canvas-container">
+    <div id="customLoadingScreenDiv">
+      <h2 id="loading-text" class="loading-text">Loading Iceland 360...</h2>
+      <img class="loading-image" src="iceland-360.svg" />
+      <div class="loader-button-container">
+        <div id="loader" class="loader"></div>
+        <button name="start" class="start" id="babylonUnmuteIconBtn" title="Unmute">Start Tour</button>
+      </div>
+    </div>
+    <canvas id="renderCanvas"></canvas>
+  </main>
+  <aside class="instructions">
+    <p>Use the mouse to click and drag to look around the scene. Hit the space bar to advance the tour forward.</p>
+  </aside>
+</body>
+<script type="module" src="./scripts/init.js"></script>
+
+</html>
