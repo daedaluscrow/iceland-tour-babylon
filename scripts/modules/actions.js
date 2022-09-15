@@ -2,13 +2,14 @@ import { data } from "../data.js";
 import { fadeIn } from "./shader.js";
 import { endTour } from "./endTour.js";
 let index = 0;
+let text = true;
 
 export async function changeDome(direction, domes, scene) {
   if (domes.videoDome) domes.videoDome.videoTexture.video.pause();
   index = direction === 0 ? direction : Math.max(index + direction, 0);
 
   if (index > data.length - 1) {
-    endTour();
+    endTour(domes, scene);
   } else {
     if (data[index].type === "video") {
       if (!domes.videoDome) {
@@ -61,4 +62,9 @@ export async function changeDome(direction, domes, scene) {
 
 export function getIndex() {
   return index;
+}
+
+export function toggleText(domes) {
+  text = !text;
+  domes.label.isVisible = text;
 }

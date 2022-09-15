@@ -1,4 +1,6 @@
 import { fadeOut } from "./shader.js";
+import { toggleText } from "./actions.js";
+let fullscreen = false;
 
 export function keyboardControls(scene, domes, xr) {
   scene.onKeyboardObservable.add((kbInfo) => {
@@ -16,8 +18,13 @@ export function keyboardControls(scene, domes, xr) {
         case "KeyR":
           fadeOut(0, scene, domes);
           break;
+        case "KeyT":
+          toggleText(domes);
+          break;
+        case "KeyF":
+          toggleFullscreen(scene.getEngine());
+          break;
         case "KeyX":
-          console.log(xr);
           xr.baseExperience.enterXRAsync("immersive-vr", "local-floor");
           break;
       }
@@ -74,40 +81,12 @@ export function vrControls(xr, scene, domes) {
           default:
             break;
         }
-        //   if (component.type === "trigger") {
-        //     component.onButtonStateChangedObservable.add(() => {
-        //       if (component.pressed) fadeOut("forward", scene, domes);
-        //     });
-        //   } else {
-        //   }
-        // });
-        // let triggerComponent = motionController.getComponent(xr_ids[0]);
-        // let squeezeComponent = motionController.getComponent(xr_ids[1]);
-        // let button1Component = motionController.getComponent(xr_ids[3]);
-        // let button2Component = motionController.getComponent(xr_ids[4]);
-        // console.log(xr_ids);
-        // triggerComponent.onButtonStateChangedObservable.add(() => {
-        //   if (triggerComponent.pressed) {
-        //     fadeOut("forward", scene, domes);
-        //   }
-        // });
-        // button1Component.onButtonStateChangedObservable.add(() => {
-        //   if (button1Component.pressed) {
-        //     fadeOut("back", scene, domes);
-        //   }
-        // });
-        // button2Component.onButtonStateChangedObservable.add(() => {
-        //   if (button2Component.pressed) {
-        //     fadeOut("reset", scene, domes);
-        //   }
-        // });
-        // squeezeComponent.onButtonStateChangedObservable.add(() => {
-        //   if (squeezeComponent.pressed) {
-        //     window.music.isPlaying ? window.music.pause() : window.music.play();
-        //   }
-        // });
       });
     });
   });
-  // console.log(xr);
+}
+
+function toggleFullscreen(engine) {
+  fullscreen = !fullscreen;
+  fullscreen ? engine.exitFullscreen(false) : engine.enterFullscreen(false);
 }
